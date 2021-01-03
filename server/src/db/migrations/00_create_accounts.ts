@@ -8,7 +8,11 @@ export async function up(knex: Knex){
     table.increments('id').primary();
 
     table.string('email').notNullable();
-    
+
+    table.string('password').notNullable();
+
+    table.date('birthday');
+
   })
 }
 

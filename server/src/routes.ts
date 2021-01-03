@@ -1,9 +1,14 @@
 import express from 'express';
 
-const routes = express.Router();
+import AccountsController from './controllers/AccountsController';
 
-routes.get('/', (req, res) => {
+const routes = express.Router();
+const accountsController = new AccountsController();
+
+routes.get('/accounts', (req, res) => {
   return res.json(['hi']);
 });
+
+routes.post('/accounts', accountsController.create);
 
 export default routes;
