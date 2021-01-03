@@ -6,6 +6,7 @@ const conn = knex({
   connection: {
     filename: path.resolve(__dirname, 'db.sqlite'),
   },
+  useNullAsDefault: true,
 });
 
 export default conn;
