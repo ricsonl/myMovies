@@ -82,10 +82,10 @@ class WatchListController {
     if(profiles.length == 0)
       return res.status(401).json({ message: 'Perfil inexistente' });
 
-    const { watchlistItem_id } = req.body;
+      const { targetId } = req.params;
 
     const owner = await db('profile_watchlistItem')
-      .where('watchlistItem_id', watchlistItem_id)
+      .where('watchlistItem_id', targetId)
       .where('profile_id', logged_prof);
 
     if(owner.length == 0)
@@ -94,16 +94,16 @@ class WatchListController {
     const trx = await db.transaction();
 
     await trx('profile_watchlistItem')
-      .where('watchlistItem_id', watchlistItem_id)
+      .where('watchlistItem_id', targetId)
       .delete();
     
     await trx('watchlistItems')
-      .where('id', watchlistItem_id)
+      .where('id', targetId)
       .delete();
 
     trx.commit();
 
-    return res.status(204).json({ deleted: watchlistItem_id });
+    return res.status(204).json({ deleted: targetId });
   }
   
 }

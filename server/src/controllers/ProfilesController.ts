@@ -63,17 +63,17 @@ class ProfilesController {
     if(accounts.length == 0)
       return res.status(401).json({ message: 'Conta inexistente' });
 
-    const { profile_id } = req.body;
+    const { targetId } = req.params;
 
     const owner = await db('account_profile')
-      .where('profile_id', profile_id)
+      .where('profile_id', targetId)
       .where('account_id', logged_acc);
 
     if(owner.length == 0)
       return res.status(401).json({ message: 'Você não tem permissão para deletar este perfil' });
 
     const profiles = await db('profiles')
-      .where('profiles.id', profile_id)
+      .where('profiles.id', targetId)
       .select('main');
 
     if(profiles[0].main)
@@ -82,16 +82,16 @@ class ProfilesController {
     const trx = await db.transaction();
 
     await trx('account_profile')
-      .where('profile_id', profile_id)
+      .where('profile_id', targetId)
       .delete();
     
     await trx('profiles')
-      .where('id', profile_id)
+      .where('id', targetId)
       .delete();
 
     trx.commit();
 
-    return res.status(204).json({ deleted: profile_id });
+    return res.status(204).json({ deleted: targetId });
   }
 }
 

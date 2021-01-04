@@ -16,12 +16,12 @@ routes.post('/accounts', accountsController.create);
 
 routes.get('/profiles', profilesController.index);
 routes.post('/profiles', profilesController.create);
-routes.delete('/profiles', profilesController.delete);
+routes.delete('/profiles/:targetId', profilesController.delete);
 
 routes.post('/login', loginController.create);
 
 routes.get('/watchlist', watchListController.index);
 routes.post('/watchlist', watchListController.create);
-routes.delete('/watchlist', watchListController.delete);
+routes.delete('/watchlist/:targetId', watchListController.delete);
 
 export default routes;
