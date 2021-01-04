@@ -10,7 +10,7 @@ export async function up(knex: Knex){
     table.integer('account_id')
       .notNullable()
       .references('id')
-      .inTable('account');
+      .inTable('accounts');
 
     table.integer('profile_id')
       .notNullable()

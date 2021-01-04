@@ -9,8 +9,8 @@ class AccountsController {
     const accounts = await db('accounts')
       .select('*');
     
-    res.json(accounts);
-    
+    return res.status(200).json(accounts);
+
   }
 
   async create(req :Request, res :Response){// cria um registro na tabela de contas
@@ -31,7 +31,7 @@ class AccountsController {
       const { countSame } = sameEmailAccounts[0];
       
       if(countSame > 0)
-        return res.json({ message: 'Já existe uma conta com este email!' });
+        return res.status(409).json({ message: 'Já existe uma conta com este email!' });
 
       const trx = await db.transaction();
     
@@ -40,12 +40,13 @@ class AccountsController {
       const account = {
         email,
         password: hashed,
-        birthday
       };
       const insertedAccountIds = await trx('accounts').insert(account);
 
       const mainProfile = {
         name: mainProfileName,
+        main: true,
+        birthday,
       }
       const insertedProfileIds = await trx('profiles').insert(mainProfile);
 
@@ -59,13 +60,13 @@ class AccountsController {
 
       trx.commit();
 
-      return res.json({
+      return res.status(201).json({
         accountId,
         ...account
       });
 
     }
-    return res.json({ message: 'Preencha todos os campos!' });
+    return res.status(400).json({ message: 'Preencha todos os campos!' });
   }
 }
 

@@ -15,16 +15,16 @@ class LoginController {
         .select('');
       
       if(accounts.length == 0)
-        return res.json({ message: 'Não existe uma conta vinculada a este email' });
+        return res.status(401).json({ message: 'Não existe uma conta vinculada a este email' });
 
       const acc = accounts[0];
       await bcrypt.compare(password, accounts[0].password).then((result) => {
         if(result)
-          return res.json({ acc });
-        return res.json({ message: 'Senha incorreta' });
+          return res.status(200).json({ acc });
+        return res.status(401).json({ message: 'Senha incorreta' });
       })
     }
-    return res.json({ message: 'Preencha todos os campos!' });
+    return res.status(400).json({ message: 'Preencha todos os campos!' });
 
   }
   
