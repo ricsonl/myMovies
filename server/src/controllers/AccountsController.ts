@@ -4,6 +4,15 @@ import db from '../db/connection';
 
 class AccountsController {
 
+  async index(req :Request, res :Response){// lista contas cadastradas
+
+    const accounts = await db('accounts')
+      .select('*');
+    
+    res.json(accounts);
+    
+  }
+
   async create(req :Request, res :Response){// cria um registro na tabela de contas
 
     const {
@@ -17,15 +26,16 @@ class AccountsController {
 
       const sameEmailAccounts = await db('accounts')
         .where('email', email)
-        .select('*');
+        .count('* as countSame');
       
-      if(sameEmailAccounts.length > 0)
-        return res.json({message: 'Já existe uma conta com este email!'});
+      const { countSame } = sameEmailAccounts[0];
+      
+      if(countSame > 0)
+        return res.json({ message: 'Já existe uma conta com este email!' });
 
       const trx = await db.transaction();
     
-      const salt = await bcrypt.genSalt(6);
-      const hashed = await bcrypt.hash(password, salt);
+      const hashed = await bcrypt.hash(password, 10);
 
       const account = {
         email,
@@ -54,11 +64,8 @@ class AccountsController {
         ...account
       });
 
-    } return res.json({message: 'Preencha todos os campos!'});
-  }
-
-  async index(req :Request, res: Response){
-
+    }
+    return res.json({ message: 'Preencha todos os campos!' });
   }
 }
 
