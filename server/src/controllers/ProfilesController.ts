@@ -10,7 +10,7 @@ class ProfilesController {
       .join('account_profile', 'accounts.id', '=', 'account_profile.account_id')
       .where('accounts.id', logged_acc)
       .join('profiles', 'account_profile.profile_id', '=', 'profiles.id')
-      .select('profile_id', 'name', 'main');
+      .select('profile_id as id', 'name', 'main');
     
     return res.status(200).json(accountProfiles);
   }
@@ -50,7 +50,10 @@ class ProfilesController {
 
     trx.commit();
 
-    return res.status(201).json(newProfile);
+    return res.status(201).json({
+      id: newProfileId,
+      ...newProfile
+    });
 
   }
 

@@ -20,7 +20,10 @@ class LoginController {
       const acc = accounts[0];
       await bcrypt.compare(password, accounts[0].password).then((result) => {
         if(result)
-          return res.status(200).json({ acc });
+          return res.status(200).json({ 
+            id: acc.id,
+            email,
+          });
         return res.status(401).json({ message: 'Senha incorreta' });
       })
     }

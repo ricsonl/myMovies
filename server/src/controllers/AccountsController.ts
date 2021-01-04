@@ -4,15 +4,6 @@ import db from '../db/connection';
 
 class AccountsController {
 
-  async index(req :Request, res :Response){// lista contas cadastradas
-
-    const accounts = await db('accounts')
-      .select('*');
-    
-    return res.status(200).json(accounts);
-
-  }
-
   async create(req :Request, res :Response){// cria um registro na tabela de contas
 
     const {
@@ -61,8 +52,8 @@ class AccountsController {
       trx.commit();
 
       return res.status(201).json({
-        accountId,
-        ...account
+        id: accountId,
+        email
       });
 
     }

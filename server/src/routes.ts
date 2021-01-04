@@ -1,24 +1,23 @@
 import express from 'express';
 
 import AccountsController from './controllers/AccountsController';
-import ProfilesController from './controllers/ProfilesController';
 import LoginController from './controllers/LoginController';
+import ProfilesController from './controllers/ProfilesController';
 import WatchListController from './controllers/WatchListController';
 
 const routes = express.Router();
 const accountsController = new AccountsController();
-const profilesController = new ProfilesController();
 const loginController = new LoginController();
+const profilesController = new ProfilesController();
 const watchListController = new WatchListController();
 
-routes.get('/accounts', accountsController.index);
 routes.post('/accounts', accountsController.create);
+
+routes.post('/login', loginController.create);
 
 routes.get('/profiles', profilesController.index);
 routes.post('/profiles', profilesController.create);
 routes.delete('/profiles/:targetId', profilesController.delete);
-
-routes.post('/login', loginController.create);
 
 routes.get('/watchlist', watchListController.index);
 routes.post('/watchlist', watchListController.create);
