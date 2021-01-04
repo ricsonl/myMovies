@@ -88,14 +88,14 @@
           `"TMDB_id": 500,`  
           `"name": "Toy Story 2",`  
           `"synopsis": "Woody tenta salvar um brinquedo que acaba indo parar em um bazar de usados, mas termina por ser sequestrado por um colecionador que pretende vendê-lo a um museu japonês. Na casa do sequestrador, Woody descobre que, no passado, foi protagonista de um famoso seriado de TV e por isso é um brinquedo muito valioso. Ele conhece os demais integrantes de sua coleção e, enquanto isso, os demais brinquedos, liderados por Buzz Lightyear, partem em uma atrapalhada operação de resgate.",`  
-          `"watched": 0`
+          `"watched": 0`  
         `},`  
         `{`  
           `"id": 40,`  
           `"TMDB_id": 102,`  
           `"name": "Toy Story",`  
           `"synopsis": "O aniversário do garoto Andy está chegando e seus brinquedos ficam nervosos, temendo que ele ganhe novos brinquedos que possam substituí-los. Liderados pelo caubói Woody, o brinquedo predileto de Andy, eles recebem Buzz Lightyear, o boneco de um patrulheiro espacial, que logo passa a receber mais atenção do garoto. Com ciúmes, Woody tenta ensiná-lo uma lição, mas Buzz cai pela janela. É o início da aventura do caubói, que precisa resgatar Buzz para limpar sua barra com os outros brinquedos.",`  
-          `"watched": 1`
+          `"watched": 1`  
        `}]`  
        
  * **Adicionar filme à watchlist de um perfil:** _POST_ localhost:3100/watchlist  
@@ -106,7 +106,7 @@
     `{`  
       `"TMDB_id": "505",`  
       `"name": "Senhor dos Anéis",`  
-      `"synopsis": "Em uma terra fantástica e única, um hobbit recebe de presente de seu tio um anel mágico e maligno que precisa ser destruído antes que caia nas mãos do mal. Para isso, o hobbit Frodo tem um caminho árduo pela frente, onde encontra perigo, medo e seres bizarros. Ao seu lado para o cumprimento desta jornada, ele aos poucos pode contar com outros hobbits, um elfo, um anão, dois humanos e um mago, totalizando nove seres que formam a Sociedade do Anel."`
+      `"synopsis": "Em uma terra fantástica e única, um hobbit recebe de presente de seu tio um anel mágico e maligno que precisa ser destruído antes que caia nas mãos do mal. Para isso, o hobbit Frodo tem um caminho árduo pela frente, onde encontra perigo, medo e seres bizarros. Ao seu lado para o cumprimento desta jornada, ele aos poucos pode contar com outros hobbits, um elfo, um anão, dois humanos e um mago, totalizando nove seres que formam a Sociedade do Anel."`  
     `}`  
       
     * _RESPONSE EXAMPLE_ (code 201):  
@@ -114,8 +114,8 @@
       `"id": 602,`  
       `"TMDB_id": "505",`  
       `"name": "Senhor dos Anéis",`  
-      `"synopsis": "Em uma terra fantástica e única, um hobbit recebe de presente de seu tio um anel mágico e maligno que precisa ser destruído antes que caia nas mãos do mal. Para isso, o hobbit Frodo tem um caminho árduo pela frente, onde encontra perigo, medo e seres bizarros. Ao seu lado para o cumprimento desta jornada, ele aos poucos pode contar com outros hobbits, um elfo, um anão, dois humanos e um mago, totalizando nove seres que formam a Sociedade do Anel.",`
-      `"watched": false`
+      `"synopsis": "Em uma terra fantástica e única, um hobbit recebe de presente de seu tio um anel mágico e maligno que precisa ser destruído antes que caia nas mãos do mal. Para isso, o hobbit Frodo tem um caminho árduo pela frente, onde encontra perigo, medo e seres bizarros. Ao seu lado para o cumprimento desta jornada, ele aos poucos pode contar com outros hobbits, um elfo, um anão, dois humanos e um mago, totalizando nove seres que formam a Sociedade do Anel.",`  
+      `"watched": false`  
     `}`  
      
 * **Remover filme da watchlist de um perfil:** _DELETE_ localhost:3100/watchlist/:targetId  
