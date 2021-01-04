@@ -6,13 +6,15 @@ import SignupPage from './containers/SignupPage';
 import HomeAccountPage from './containers/HomeAccountPage';
 import HomeProfilePage from './containers/HomeProfilePage';
 
+import PrivateRoute from './Utils/PrivateRoute';
+
 function Routes(){
     return(
         <BrowserRouter>
             <Route exact path="/" component={LoginPage}/>
             <Route path="/signup" component={SignupPage}/>
-            <Route path="/accountHome/:id" component={HomeAccountPage}/>
-            <Route path="/profileHome/:id" component={HomeProfilePage}/>
+            <PrivateRoute path="/accountHome/:id" component={HomeAccountPage}/>
+            <PrivateRoute path="/profileHome/:id" component={HomeProfilePage}/>
         </BrowserRouter>
     );
 }
