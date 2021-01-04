@@ -12,7 +12,7 @@ class ProfilesController {
       .join('profiles', 'account_profile.profile_id', '=', 'profiles.id')
       .select('profile_id as id', 'name', 'main');
     
-    return res.status(200).json(accountProfiles);
+    return res.json(accountProfiles);
   }
 
   async create(req :Request, res :Response){// cria um usuário em uma conta
@@ -27,9 +27,9 @@ class ProfilesController {
     const { countProfiles } = profiles[0];
 
     if(countProfiles >= 4)
-      return res.status(409).json({ message: 'Limite máximo de perfis atingido' });
+      return res.json({ message: 'Limite máximo de perfis atingido' });
     if(countProfiles == 0)
-      return res.status(401).json({ message: 'Conta inexistente' });
+      return res.json({ message: 'Conta inexistente' });
 
     const trx = await db.transaction();
 
@@ -64,7 +64,7 @@ class ProfilesController {
       .where('accounts.id', logged_acc);
 
     if(accounts.length == 0)
-      return res.status(401).json({ message: 'Conta inexistente' });
+      return res.json({ message: 'Conta inexistente' });
 
     const { targetId } = req.params;
 
@@ -73,14 +73,14 @@ class ProfilesController {
       .where('account_id', logged_acc);
 
     if(owner.length == 0)
-      return res.status(401).json({ message: 'Você não tem permissão para deletar este perfil' });
+      return res.json({ message: 'Você não tem permissão para deletar este perfil' });
 
     const profiles = await db('profiles')
       .where('profiles.id', targetId)
       .select('main');
 
     if(profiles[0].main)
-      return res.status(409).json({ message: 'Você não pode deletar o perfil principal da sua conta' });
+      return res.json({ message: 'Você não pode deletar o perfil principal da sua conta' });
 
     const trx = await db.transaction();
 

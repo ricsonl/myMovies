@@ -22,7 +22,7 @@ class AccountsController {
       const { countSame } = sameEmailAccounts[0];
       
       if(countSame > 0)
-        return res.status(409).json({ message: 'Já existe uma conta com este email!' });
+        return res.json({ message: 'Já existe uma conta com este email!' });
 
       const trx = await db.transaction();
     
@@ -51,13 +51,13 @@ class AccountsController {
 
       trx.commit();
 
-      return res.status(201).json({
+      return res.json({
         id: accountId,
         email
       });
 
     }
-    return res.status(400).json({ message: 'Preencha todos os campos!' });
+    return res.json({ message: 'Preencha todos os campos!' });
   }
 }
 

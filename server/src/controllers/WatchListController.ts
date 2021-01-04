@@ -10,7 +10,7 @@ class WatchListController {
       .where('profiles.id', logged_prof);
     
     if(profiles.length == 0)
-      return res.status(401).json({ message: 'Perfil inexistente' });
+      return res.json({ message: 'Perfil inexistente' });
     
     const profileWatchlist = await db('profiles')
       .join('profile_watchlistItem', 'profiles.id', '=', 'profile_watchlistItem.profile_id')
@@ -30,7 +30,7 @@ class WatchListController {
       .where('profiles.id', logged_prof);
 
     if(profiles.length == 0)
-      return res.status(401).json({ message: 'Perfil inexistente' });
+      return res.json({ message: 'Perfil inexistente' });
 
     const { TMDB_id, name, synopsis } = req.body;
 
@@ -44,7 +44,7 @@ class WatchListController {
     const { countSame } = countSameMovies[0];
 
     if(countSame > 0)
-        return res.status(409).json({ message: 'Este filme já está na sua watchlist!' });
+        return res.json({ message: 'Este filme já está na sua watchlist!' });
 
     const trx = await db.transaction();
 
@@ -80,7 +80,7 @@ class WatchListController {
       .where('profiles.id', logged_prof);
 
     if(profiles.length == 0)
-      return res.status(401).json({ message: 'Perfil inexistente' });
+      return res.json({ message: 'Perfil inexistente' });
 
       const { targetId } = req.params;
 
@@ -89,7 +89,7 @@ class WatchListController {
       .where('profile_id', logged_prof);
 
     if(owner.length == 0)
-      return res.status(401).json({ message: 'Você não tem permissão para deletar este item' });
+      return res.json({ message: 'Você não tem permissão para deletar este item' });
 
     const trx = await db.transaction();
 
