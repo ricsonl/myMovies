@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Redirect } from 'react-router-dom';
 
 import LoginPage from './containers/LoginPage';
 import SignupPage from './containers/SignupPage';
@@ -15,6 +15,7 @@ function Routes(){
             <Route path="/signup" component={SignupPage}/>
             <PrivateRoute path="/accountHome/:id" component={HomeAccountPage}/>
             <PrivateRoute path="/profileHome/:id" component={HomeProfilePage}/>
+            <Route render={() => <Redirect to={{pathname: "/"}} />} />
         </BrowserRouter>
     );
 }

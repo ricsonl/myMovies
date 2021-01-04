@@ -5,6 +5,11 @@
   --white: #fcf8e8;
   --magenta: #ca3e47;
 }
+
+html, body, #root {
+  height: 100%;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -12,7 +17,7 @@ body {
   width: 100vw;
   overflow-x: hidden;
 
-  background: var(--grey);
+  background: var(--light-grey);
   
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

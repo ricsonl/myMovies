@@ -1,0 +1,14 @@
+.signupContainer {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.error {
+  margin: 20px 0 20px 0;
+  color: var(--white);
+  width: 85%;
+  align-self: center;
+  text-align: center;
+}

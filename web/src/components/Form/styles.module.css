@@ -1,0 +1,21 @@
+.myForm {
+  width: 100%;
+  padding: 25px 20px;
+  border-radius: 10px;
+  background-color: var(--grey);
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+}
+
+.myForm p {
+  margin-top: 7px;
+  align-self: center;
+  font-size: 15px;
+  color: var(--lighter-grey);
+}
+
+.myForm p .signupLink {
+  color: var(--magenta);
+  text-decoration: none;
+}
