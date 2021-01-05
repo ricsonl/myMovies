@@ -49,11 +49,13 @@
           `"id": 5,`  
           `"name": "Test01",`  
           `"main": 1`  
+          `"birthday": "1999-05-06"`  
         `},`  
         `{`  
           `"id": 23,`  
           `"name": "Test02",`  
           `"main": 0`  
+          `"birthday": null`  
        `}]`  
  * **Criar perfil em uma conta:** _POST_ localhost:3100/profiles
     * _HEADERS EXAMPLE_:  
