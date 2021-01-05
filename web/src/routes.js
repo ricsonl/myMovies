@@ -6,7 +6,7 @@ import SignupPage from './containers/SignupPage';
 import HomeAccountPage from './containers/HomeAccountPage';
 import HomeProfilePage from './containers/HomeProfilePage';
 
-import PrivateRoute from './Utils/PrivateRoute';
+//import PrivateRoute from './Utils/PrivateRoute';
 
 function Routes(props){
     return(

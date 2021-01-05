@@ -1,0 +1,19 @@
+.profileItem{
+  display: flex;
+  width: 150px;
+  justify-content: center;
+  align-items: flex-end;
+  padding: 0;
+}
+
+.profileItem img {
+  max-width: 100%;
+  border-radius: 10px;
+  opacity: 60%;
+}
+
+.profileItem strong {
+  position: absolute;
+  font-size: 18px;
+  color: var(--white);
+}
