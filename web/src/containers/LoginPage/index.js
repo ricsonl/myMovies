@@ -26,7 +26,7 @@ class LoginPage extends Component {
     if (response.data.id) {
 
         const { id } = response.data;
-        this.props.history.push(`/homeAccount/${id}`);
+        this.props.history.push(`/accountHome/${id}`);
 
     } else this.setState({ error: response.data.message });
   }

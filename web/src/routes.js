@@ -8,13 +8,15 @@ import HomeProfilePage from './containers/HomeProfilePage';
 
 import PrivateRoute from './Utils/PrivateRoute';
 
-function Routes(){
+function Routes(props){
     return(
         <BrowserRouter>
             <Route exact path="/" component={LoginPage}/>
             <Route path="/signup" component={SignupPage}/>
-            <PrivateRoute path="/accountHome/:id" component={HomeAccountPage}/>
-            <PrivateRoute path="/profileHome/:id" component={HomeProfilePage}/>
+
+            <Route path="/accountHome/:id" component={HomeAccountPage} />
+            <Route path="/profileHome/:id" component={HomeProfilePage} />
+            
             <Route render={() => <Redirect to={{pathname: "/"}} />} />
         </BrowserRouter>
     );

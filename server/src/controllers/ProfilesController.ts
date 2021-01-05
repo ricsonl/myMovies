@@ -10,7 +10,7 @@ class ProfilesController {
       .join('account_profile', 'accounts.id', '=', 'account_profile.account_id')
       .where('accounts.id', logged_acc)
       .join('profiles', 'account_profile.profile_id', '=', 'profiles.id')
-      .select('profile_id as id', 'name', 'main');
+      .select('profile_id as id', 'name', 'main', 'birthday');
     
     return res.json(accountProfiles);
   }

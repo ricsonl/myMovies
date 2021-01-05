@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
 import bcrypt from 'bcrypt';
+
 import db from '../db/connection';
 
 class LoginController {
-
   async create(req :Request, res :Response){// requisição de efetuar login
 
     const { email, password } = req.body;
@@ -12,7 +12,7 @@ class LoginController {
 
       const accounts = await db('accounts')
         .where('email', email)
-        .select('');
+        .select('*');
       
       if(accounts.length == 0)
         return res.json({ message: 'Não existe uma conta vinculada a este email' });
@@ -27,7 +27,7 @@ class LoginController {
         return res.json({ message: 'Senha incorreta' });
       })
     }
-    return res.json({ message: 'Preencha todos os campos!' });
+    else return res.json({ message: 'Preencha todos os campos!' });
 
   }
   
