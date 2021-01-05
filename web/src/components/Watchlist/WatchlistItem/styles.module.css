@@ -1,0 +1,23 @@
+.card{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: var(--grey);
+  width: 100%;
+  margin: 0;
+  padding: 15px 0;
+  border-radius: 8px;
+}
+.card div h3{
+  margin: 0;
+  font-size: 20px;
+  max-width: 250px;
+  white-space: nowrap;
+  overflow: hidden !important;
+  text-overflow: ellipsis;
+}
+.card div p{
+  color: var(--lighter-grey);
+  max-width: 250px;
+  word-wrap: break-word;
+}

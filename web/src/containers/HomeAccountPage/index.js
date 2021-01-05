@@ -17,8 +17,7 @@ class HomeAccountPage extends Component {
 
   async componentDidMount(){
     
-    const loggedAcc = this.props.match.params.id;
-    this.context.setLoggedAcc(loggedAcc);
+    const loggedAcc = this.context.loggedAcc;
 
     const response = await api.get('/profiles', {
       headers: { logged_acc: loggedAcc }
@@ -32,7 +31,7 @@ class HomeAccountPage extends Component {
   onProfileClick = (id, name) => {
     this.context.setLoggedProf(id);
     this.context.setProfileName(name);
-    this.props.history.push(`/profileHome/${id}`);
+    this.props.history.push(`/profileHome`);
   }
 
   render() {
@@ -52,7 +51,7 @@ class HomeAccountPage extends Component {
             }
           </ul>
         ) : (
-          <p>b</p>
+          null
         ) }
       </>
     )

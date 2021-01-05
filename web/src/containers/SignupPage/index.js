@@ -6,11 +6,14 @@ import FormSection from '../../components/Form/FormSection';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 
+import UserContext from '../../context/UserContext'
 import api from '../../services/api';
 
 import styles from './styles.module.css';
 
 class SignupPage extends Component {
+
+  static contextType = UserContext;
 
   state = {
     email: '',
@@ -38,7 +41,9 @@ class SignupPage extends Component {
 
     if (response.data.id) {
         const { id } = response.data;
-        this.props.history.push(`/accountHome/${id}`);
+        this.context.setLoggedAcc(id);
+
+        this.props.history.push(`/accountHome`);
         return;
     }
 

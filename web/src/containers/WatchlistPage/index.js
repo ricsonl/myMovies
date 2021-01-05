@@ -4,42 +4,28 @@ import UserContext from '../../context/UserContext';
 import api from '../../services/api';
 
 import NavBar from '../NavBar';
-import MovieList from '../../components/MovieList';
+import Watchlist from '../../components/Watchlist';
 import styles from './styles.module.css';
 
-class HomeProfilePage extends Component {
+class WatchlistPage extends Component {
 
   static contextType = UserContext;
 
   state = {
     searchText: '',
-    suggestedMovies: [],
+    watchlist: [],
   }
 
   async componentDidMount(){
 
     const loggedProf = this.context.loggedProf;
-
     const response = await api.get('/watchlist', {
       headers: { logged_prof: loggedProf }
     });
-
     this.setState({ 
-      suggestedMovies: response.data
+      watchlist: response.data
     });
 
-  }
-
-  async componentDidUpdate(){
-    const loggedProf = this.context.loggedProf;
-
-    const response = await api.get('/watchlist', {
-      headers: { logged_prof: loggedProf }
-    });
-
-    this.setState({ 
-      suggestedMovies: response.data
-    });
   }
 
   onSearch = () => {
@@ -61,6 +47,22 @@ class HomeProfilePage extends Component {
     this.props.history.push(`/profileHome`);
   }
 
+  removeWatchlistItem = async (id) => {
+    const loggedProf = this.context.loggedProf;
+
+    await api.delete(`/watchlist/${id}`, {
+      headers: { logged_prof: loggedProf }
+    });
+
+    const response = await api.get('/watchlist', {
+      headers: { logged_prof: loggedProf }
+    });
+    
+    this.setState({ 
+      watchlist: response.data
+    });
+  }
+
   render() {
     return (
       <> 
@@ -72,11 +74,11 @@ class HomeProfilePage extends Component {
             goToWatchlist={this.goToWatchlist}
             goToHome={this.goToHome}
         />
-        <h2 className={styles.title}>Aqui estão alguns filmes que você pode gostar:</h2>
-        <MovieList movies={this.state.suggestedMovies}/>
+        <h2 className={styles.title}>Watchlist</h2>
+        <Watchlist movies={this.state.watchlist} remove={this.removeWatchlistItem}/>
       </>
     )
   }
 }
 
-export default HomeProfilePage;
+export default WatchlistPage;

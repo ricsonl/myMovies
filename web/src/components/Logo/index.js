@@ -2,9 +2,9 @@ import React from 'react';
 
 import styles from './styles.module.css'
 
-const Logo = () => {
+const Logo = (props) => {
   return (
-    <h1 className={styles.logo}>MyMovies</h1>
+    <h1 onClick={props.onClick} className={styles.logo}>MyMovies</h1>
   );
 };
 
