@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import UserContext from '../../context/UserContext';
 import api from '../../services/api';
+import { searchByGenre } from '../../services/tmdbHelpers';
 
 import NavBar from '../NavBar';
 import MovieList from '../../components/MovieList';
@@ -19,14 +20,11 @@ class HomeProfilePage extends Component {
   async componentDidMount(){
 
     const loggedProf = this.context.loggedProf;
-
-    const response = await api.get('/watchlist', {
-      headers: { logged_prof: loggedProf }
-    });
-
-    this.setState({ 
+    const genres = [];
+    const response = await searchByGenre(genres);
+    /*this.setState({ 
       suggestedMovies: response.data
-    });
+    });*/
 
   }
 
