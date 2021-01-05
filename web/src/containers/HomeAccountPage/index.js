@@ -2,33 +2,36 @@ import React, { Component } from 'react';
 
 import ProfileItem from '../../components/ProfileItem';
 
+import UserContext from '../../context/UserContext';
 import api from '../../services/api';
 
 import styles from './styles.module.css';
 
 class HomeAccountPage extends Component {
 
+  static contextType = UserContext;
+
   state = {
-    loggedAccount: null,
     profiles: [],
   }
 
   async componentDidMount(){
-
+    
     const loggedAcc = this.props.match.params.id;
+    this.context.setLoggedAcc(loggedAcc);
 
     const response = await api.get('/profiles', {
       headers: { logged_acc: loggedAcc }
     });
 
     this.setState({
-      loggedAccount: loggedAcc, 
       profiles: response.data
     });
-
   }
 
-  onProfileClick = (id) => {
+  onProfileClick = (id, name) => {
+    this.context.setLoggedProf(id);
+    this.context.setProfileName(name);
     this.props.history.push(`/profileHome/${id}`);
   }
 
@@ -43,7 +46,7 @@ class HomeAccountPage extends Component {
                 return <ProfileItem
                           key={profile.id}
                           name={profile.name}
-                          clicked={this.onProfileClick.bind(this, profile.id)}
+                          clicked={this.onProfileClick.bind(this, profile.id, profile.name)}
                         />
               })
             }
