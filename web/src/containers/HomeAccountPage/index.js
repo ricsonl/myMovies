@@ -19,6 +19,7 @@ class HomeAccountPage extends PureComponent {
     
     this.context.setLoggedProf(null);
     this.context.setProfileName('');
+    this.context.setWatchlist([]);
 
     const loggedAcc = this.context.loggedAcc;
 
@@ -31,9 +32,16 @@ class HomeAccountPage extends PureComponent {
     });
   }
 
-  onProfileClick = (id, name) => {
+  onProfileClick = async (id, name) => {
     this.context.setLoggedProf(id);
     this.context.setProfileName(name);
+
+    const response = await api.get('/watchlist', {
+      headers: { logged_prof: id }
+    });
+
+    this.context.setWatchlist(response.data);
+
     this.props.history.push(`/profileHome`);
   }
 
