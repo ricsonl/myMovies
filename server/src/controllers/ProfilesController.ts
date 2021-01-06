@@ -28,31 +28,37 @@ class ProfilesController {
   }
 
   async create(req :Request, res :Response){// cria um usuário em uma conta
-
     const { logged_acc } = req.headers;
     
     const profiles = await db('accounts')
       .join('account_profile', 'accounts.id', '=', 'account_profile.account_id')
       .where('accounts.id', logged_acc)
-      .count('* as countProfiles');
+      .join('profiles', 'account_profile.profile_id', '=', 'profiles.id')
+      .select('name');
 
-    const { countProfiles } = profiles[0];
-
-    if(countProfiles >= 4)
+    if(profiles.length >= 4)
       return res.json({ message: 'Limite máximo de perfis atingido' });
-    if(countProfiles == 0)
+    if(profiles.length == 0)
       return res.json({ message: 'Conta inexistente' });
 
-    const trx = await db.transaction();
+    const profileNames = profiles.map(profile => {
+      return profile.name
+    })
 
     const { name } = req.body;
+
     if(name === '')
       return res.json({ message: 'Preencha todos os campos!' });
+
+    if(profileNames.includes(name))
+      return res.json({ message: 'Já existe um perfil com este nome na conta' });
 
     const newProfile = {
       name,
       main: false,
     }
+
+    const trx = await db.transaction();
 
     const insertedProfileIds = await trx('profiles').insert(newProfile);
 
