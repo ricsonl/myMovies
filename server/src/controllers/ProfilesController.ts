@@ -15,6 +15,18 @@ class ProfilesController {
     return res.json(accountProfiles);
   }
 
+  async show(req :Request, res :Response){// mostrar um perfil dado o id
+    const { id } = req.params;
+
+    const profiles = await db('profiles')
+      .where('id', id)
+      .select('id', 'name', 'main', 'birthday');
+    
+    const profile = profiles[0];
+
+    return res.json(profile);
+  }
+
   async create(req :Request, res :Response){// cria um usuário em uma conta
 
     const { logged_acc } = req.headers;
