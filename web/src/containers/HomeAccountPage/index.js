@@ -45,25 +45,33 @@ class HomeAccountPage extends PureComponent {
     this.props.history.push(`/profileHome`);
   }
 
+  onAddProfileClick = () => {
+    this.props.history.push(`/createProfile`);
+  }
+
   render() {
     return (
       <> 
         <h1 className={styles.title}>Selecione um perfil</h1>
-        { this.state.profiles.length > 0 ? (
-          <ul className={styles.profileList}>
-            {
-              this.state.profiles.map(profile => {
-                return <ProfileItem
-                          key={profile.id}
-                          name={profile.name}
-                          clicked={this.onProfileClick.bind(this, profile.id, profile.name)}
-                        />
-              })
-            }
-          </ul>
-        ) : (
-          null
-        ) }
+        <ul className={styles.profileList}>
+          {
+            this.state.profiles.map(profile => {
+              return <ProfileItem
+                        key={profile.id}
+                        name={profile.name}
+                        clicked={this.onProfileClick.bind(this, profile.id, profile.name)}
+                      />
+            })
+          }{
+            this.state.profiles.length < 4 ? (
+              <ProfileItem  plusPlaceHolder
+                            clicked={this.onAddProfileClick.bind(this)}
+              />
+            ) : (
+              null
+            )
+          }
+        </ul>
       </>
     )
   }
