@@ -6,10 +6,7 @@ export async function up(knex: Knex){
   return knex.schema.createTable('watchlistItems', table => {
 
     table.increments('id').primary();
-
     table.integer('TMDB_id').notNullable();
-    table.string('name').notNullable();
-    table.string('synopsis');
     table.boolean('watched').notNullable();
 
   })

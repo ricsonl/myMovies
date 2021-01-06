@@ -16,7 +16,7 @@ class WatchListController {
       .join('profile_watchlistItem', 'profiles.id', '=', 'profile_watchlistItem.profile_id')
       .where('profiles.id', logged_prof)
       .join('watchlistItems', 'profile_watchlistItem.watchlistItem_id', '=', 'watchlistItems.id')
-      .select('watchlistItems.id', 'TMDB_id', 'watchlistItems.name', 'synopsis', 'watched');
+      .select('watchlistItems.id', 'TMDB_id', 'watched');
     
     return res.status(200).json(profileWatchlist);
     
@@ -32,7 +32,7 @@ class WatchListController {
     if(profiles.length == 0)
       return res.json({ message: 'Perfil inexistente' });
 
-    const { TMDB_id, name, synopsis } = req.body;
+    const { TMDB_id } = req.body;
 
     const countSameMovies = await db('profiles')
       .join('profile_watchlistItem', 'profiles.id', '=', 'profile_watchlistItem.profile_id')
@@ -50,8 +50,6 @@ class WatchListController {
 
     const newWatchlistItem = {
       TMDB_id,
-      name,
-      synopsis,
       watched: false,
     }
 
