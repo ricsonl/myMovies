@@ -60,6 +60,12 @@ class SearchResultsPage extends PureComponent {
     await api.post(`/watchlist/${id}`, null, {
       headers: { logged_prof: loggedProf }
     });
+
+    const response = await api.get('/watchlist', {
+      headers: { logged_prof: loggedProf }
+    });
+    
+    this.context.setWatchlist(response.data);
   }
 
   render() {
