@@ -15,8 +15,7 @@ const Watchlist = (props) => {
                 return <WatchlistItem
                           key={movie.id}
                           id={movie.id}
-                          name={movie.name}
-                          synopsis={movie.synopsis}
+                          tmdbId={movie.TMDB_id}
                           remove={props.remove}
                         />
               })

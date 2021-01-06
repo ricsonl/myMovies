@@ -22,10 +22,22 @@ class WatchlistPage extends Component {
     const response = await api.get('/watchlist', {
       headers: { logged_prof: loggedProf }
     });
+
     this.setState({ 
       watchlist: response.data
     });
+  }
 
+  async componentDidUpdate(){
+
+    const loggedProf = this.context.loggedProf;
+    const response = await api.get('/watchlist', {
+      headers: { logged_prof: loggedProf }
+    });
+
+    this.setState({ 
+      watchlist: response.data
+    });
   }
 
   removeWatchlistItem = async (id) => {

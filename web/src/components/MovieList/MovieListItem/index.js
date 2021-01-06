@@ -8,7 +8,7 @@ const MovieListItem = (props) => {
   return (
     <li className={styles.card}>
       <img src={props.img} alt=""/>
-      <Button title="Adicionar"/>
+      <Button onClick={props.add.bind(this, props.tmdbId)} title="Adicionar"/>
       <footer>
         <h3>{props.name}</h3>
         <p>{props.synopsis}</p>

@@ -5,7 +5,6 @@ import MovieListItem from './MovieListItem';
 import styles from './styles.module.css';
 
 const MovieList = (props) => {
-  console.log(props.movies)
   return (
     <>
       {
@@ -14,10 +13,12 @@ const MovieList = (props) => {
             {
               props.movies.map(movie => {
                 return <MovieListItem 
-                          key={movie.id}
+                          key={movie.tmdbId}
+                          tmdbId={movie.tmdbId}
                           img={movie.imageUrl} 
                           name={movie.name}
                           synopsis={movie.synopsis}
+                          add={props.add}
                         />
               })
             }
