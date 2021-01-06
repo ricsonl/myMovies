@@ -20,7 +20,7 @@ routes.post('/profiles', profilesController.create);
 routes.delete('/profiles/:targetId', profilesController.delete);
 
 routes.get('/watchlist', watchListController.index);
-routes.post('/watchlist', watchListController.create);
+routes.post('/watchlist/:tmdbId', watchListController.create);
 routes.delete('/watchlist/:targetId', watchListController.delete);
 
 export default routes;

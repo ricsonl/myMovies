@@ -23,7 +23,6 @@ class WatchListController {
   }
 
   async create(req :Request, res :Response){// adiciona um filme à watchlist
-
     const { logged_prof } = req.headers;
 
     const profiles = await db('profiles')
@@ -32,7 +31,7 @@ class WatchListController {
     if(profiles.length == 0)
       return res.json({ message: 'Perfil inexistente' });
 
-    const { TMDB_id } = req.body;
+    const TMDB_id = req.params.tmdbId;
 
     const countSameMovies = await db('profiles')
       .join('profile_watchlistItem', 'profiles.id', '=', 'profile_watchlistItem.profile_id')

@@ -37,7 +37,7 @@ const searchByText = async (text) => {
       imageUrl = `https://image.tmdb.org/t/p/w300/${images[0].file_path}`;
 
     const modifiedMovie = {
-      id: movie.id,
+      tmdbId: movie.id,
       imageUrl: imageUrl,
       name: movie.title,
       synopsis: movie.overview,

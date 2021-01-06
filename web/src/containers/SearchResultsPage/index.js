@@ -35,11 +35,8 @@ class SearchResultsPage extends Component {
   addToWatchlist = async (id) => {
     const loggedProf = this.context.loggedProf;
 
-    await api.post(`/watchlist`, {
-      data: { TMDB_id: id },
-      headers: {
-        logged_prof: loggedProf
-      }
+    await api.post(`/watchlist/${id}`, null, {
+      headers: { logged_prof: loggedProf }
     });
   }
 
