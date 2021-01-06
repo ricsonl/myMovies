@@ -18,6 +18,7 @@ const MovieList = (props) => {
                           img={movie.imageUrl} 
                           name={movie.name}
                           synopsis={movie.synopsis}
+                          isOnWatchlist={movie.isOnWatchlist}
                           add={props.add}
                         />
               })

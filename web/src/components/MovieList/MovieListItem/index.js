@@ -8,7 +8,11 @@ const MovieListItem = (props) => {
   return (
     <li className={styles.card}>
       <img src={props.img} alt=""/>
-      <Button onClick={props.add.bind(this, props.tmdbId)} title="Adicionar"/>
+      <Button 
+          disabled={props.isOnWatchlist}
+          onClick={props.add.bind(this, props.tmdbId)}
+          title="Adicionar"
+      />
       <footer>
         <h3>{props.name}</h3>
         <p>{props.synopsis}</p>
