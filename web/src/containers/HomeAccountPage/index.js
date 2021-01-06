@@ -17,6 +17,9 @@ class HomeAccountPage extends Component {
 
   async componentDidMount(){
     
+    this.context.setLoggedProf(null);
+    this.context.setProfileName('');
+
     const loggedAcc = this.context.loggedAcc;
 
     const response = await api.get('/profiles', {

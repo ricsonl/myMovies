@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom';
 
 import Logo from '../../components/Logo';
 import Input from '../../components/Input';
@@ -11,29 +12,51 @@ class NavBar extends Component {
 
   static contextType = UserContext;
 
+  state = {
+    searchText: '',
+  }
+
+  onSwitchProfile = () => {
+    this.context.setLoggedProf(null);
+    this.context.setProfileName('');
+
+    this.props.history.push(`/accountHome`);
+  }
+
   render() {
     return (
+
       <div className={styles.navContainer}>
-        <Logo onClick={this.props.goToHome}/>
-        <form onSubmit={this.props.onSubmit}>
+
+        <NavLink to={`/profileHome`} className={styles.logo}>
+          <Logo/>
+        </NavLink>
+
+        <div>
           <Input 
             type="text"
             placeholder="Buscar filmes" 
-            value={this.props.searchText}
-            onChange={this.props.onChange}
+            value={this.state.searchText}
+            onChange={e => this.setState({searchText: e.target.value})}
           />
-          <button className={styles.searchButton} type="submit">Buscar</button>
-        </form>
+          <NavLink to={this.state.searchText === '' ? '#' : `/search/${this.state.searchText}`} 
+            className={styles.searchButton}
+          >
+            Buscar
+          </NavLink>
+        </div>
 
-        <button onClick={this.props.goToWatchlist} className={styles.navItem}>
+        <NavLink to={`/watchlist`} className={styles.navItem}>
           Watchlist
-        </button>
+        </NavLink>
 
-        <button onClick={this.props.onSwitchProfile} className={styles.navItem}>
+        <NavLink to={`/accountHome`} className={styles.navItem}>
           {this.context.profileName}
           <p>trocar perfil</p>
-        </button>
+        </NavLink>
+
       </div>
+      
     );
   }
 }

@@ -6,6 +6,7 @@ import SignupPage from './containers/SignupPage';
 import HomeAccountPage from './containers/HomeAccountPage';
 import HomeProfilePage from './containers/HomeProfilePage';
 import WatchlistPage from './containers/WatchlistPage';
+import SearchResultsPage from './containers/SearchResultsPage';
 
 function Routes(){
     return(
@@ -16,6 +17,7 @@ function Routes(){
             <Route path="/accountHome" component={HomeAccountPage} />
             <Route path="/profileHome" component={HomeProfilePage} />
             <Route path="/watchlist" component={WatchlistPage} />
+            <Route path="/search/:text" component={SearchResultsPage} />
             
             <Route render={() => <Redirect to={{pathname: "/"}} />} />
         </BrowserRouter>
