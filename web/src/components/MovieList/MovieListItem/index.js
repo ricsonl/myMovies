@@ -10,7 +10,7 @@ const MovieListItem = (props) => {
       <img src={props.img} alt=""/>
       <Button title="Adicionar"/>
       <footer>
-        <strong>{props.name}</strong>
+        <h3>{props.name}</h3>
         <p>{props.synopsis}</p>
       </footer>
     </li>

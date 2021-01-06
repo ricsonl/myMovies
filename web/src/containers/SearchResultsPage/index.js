@@ -23,6 +23,14 @@ class SearchResultsPage extends Component {
 
   }
 
+  async componentDidUpdate(){
+
+    const textSearched = this.props.match.params.text;
+    const response = await searchByText(textSearched);
+    this.setState({searchResults: response});
+
+  }
+
   render() {
     return (
       <> 

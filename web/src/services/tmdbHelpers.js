@@ -13,7 +13,7 @@ const searchByText = async (text) => {
   
     const images = imagesResponse.data.backdrops;
 
-    let imageUrl = `https://image.tmdb.org/t/p/w300/3Rfvhy1Nl6sSGJwyjb0QiZzZYlB.jpg`
+    let imageUrl = `https://t4.ftcdn.net/jpg/02/07/87/79/360_F_207877921_BtG6ZKAVvtLyc5GWpBNEIlIxsffTtWkv.jpg`
     if(images.length > 0)
       imageUrl = `https://image.tmdb.org/t/p/w300/${images[0].file_path}`;
 
