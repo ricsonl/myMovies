@@ -46,6 +46,9 @@ class ProfilesController {
     const trx = await db.transaction();
 
     const { name } = req.body;
+    if(name === '')
+      return res.json({ message: 'Preencha todos os campos!' });
+
     const newProfile = {
       name,
       main: false,
