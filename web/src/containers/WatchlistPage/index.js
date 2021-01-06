@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 
 import UserContext from '../../context/UserContext';
 import api from '../../services/api';
@@ -7,13 +7,12 @@ import NavBar from '../NavBar';
 import Watchlist from '../../components/Watchlist';
 import styles from './styles.module.css';
 
-class WatchlistPage extends Component {
+class WatchlistPage extends PureComponent {
 
   static contextType = UserContext;
 
   state = {
     searchText: '',
-    watchlist: [],
   }
 
   async componentDidMount(){
@@ -23,21 +22,8 @@ class WatchlistPage extends Component {
       headers: { logged_prof: loggedProf }
     });
 
-    this.setState({ 
-      watchlist: response.data
-    });
-  }
-
-  async componentDidUpdate(){
-
-    const loggedProf = this.context.loggedProf;
-    const response = await api.get('/watchlist', {
-      headers: { logged_prof: loggedProf }
-    });
-
-    this.setState({ 
-      watchlist: response.data
-    });
+    this.context.setWatchlist(response.data);
+    
   }
 
   removeWatchlistItem = async (id) => {
@@ -51,17 +37,15 @@ class WatchlistPage extends Component {
       headers: { logged_prof: loggedProf }
     });
     
-    this.setState({ 
-      watchlist: response.data
-    });
+    this.context.setWatchlist(response.data);
   }
 
   render() {
     return (
       <> 
-        <NavBar />
+        <NavBar history={this.props.history}/>
         <h2 className={styles.title}>Watchlist</h2>
-        <Watchlist movies={this.state.watchlist} remove={this.removeWatchlistItem} />
+        <Watchlist movies={this.context.watchlist} remove={this.removeWatchlistItem} />
       </>
     )
   }

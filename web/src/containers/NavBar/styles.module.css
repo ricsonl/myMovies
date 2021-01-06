@@ -38,11 +38,11 @@
 }
 
 .searchButton {
-  padding: 15px 10px;
+  height: 90%;
   border: none;
   border-radius: 4px;
   background: var(--magenta);
-  text-decoration: none;
   color: var(--white);
+  font-weight: bold;
   cursor: pointer;
 }

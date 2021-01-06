@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 
 import UserContext from '../../context/UserContext';
 import api from '../../services/api';
@@ -8,7 +8,7 @@ import NavBar from '../NavBar';
 import MovieList from '../../components/MovieList';
 import styles from './styles.module.css';
 
-class HomeProfilePage extends Component {
+class HomeProfilePage extends PureComponent {
 
   static contextType = UserContext;
 
@@ -33,7 +33,7 @@ class HomeProfilePage extends Component {
   render() {
     return (
       <> 
-        <NavBar />
+        <NavBar history={this.props.history}/>
         <h2 className={styles.title}>Aqui estão alguns filmes que você pode gostar</h2>
         <MovieList movies={this.state.suggestedMovies} />
       </>

@@ -10,6 +10,8 @@ class App extends Component {
     loggedAcc: null,
     loggedProf: null,
     profileName: '',
+    watchlist: [],
+
     profiles: [],
   }
 
@@ -22,6 +24,9 @@ class App extends Component {
   setProfileName = (name) => {
     this.setState({profileName: name});
   }
+  setWatchlist = (watchlist) => {
+    this.setState({watchlist: watchlist});
+  }
 
   render(){
     return (
@@ -29,9 +34,11 @@ class App extends Component {
         loggedAcc: this.state.loggedAcc,
         loggedProf: this.state.loggedProf,
         profileName: this.state.profileName,
+        watchlist: this.state.watchlist,
         setLoggedAcc: this.setLoggedAcc,
         setLoggedProf: this.setLoggedProf,
         setProfileName: this.setProfileName,
+        setWatchlist: this.setWatchlist,
       }}>
         <Routes />
       </UserContext.Provider>

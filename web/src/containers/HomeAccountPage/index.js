@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 
 import ProfileItem from '../../components/ProfileItem';
 
@@ -7,7 +7,7 @@ import api from '../../services/api';
 
 import styles from './styles.module.css';
 
-class HomeAccountPage extends Component {
+class HomeAccountPage extends PureComponent {
 
   static contextType = UserContext;
 

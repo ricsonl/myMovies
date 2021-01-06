@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import Logo from '../../components/Logo';
@@ -8,7 +8,7 @@ import UserContext from '../../context/UserContext';
 
 import styles from './styles.module.css';
 
-class NavBar extends Component {
+class NavBar extends PureComponent {
 
   static contextType = UserContext;
 
@@ -16,11 +16,13 @@ class NavBar extends Component {
     searchText: '',
   }
 
-  onSwitchProfile = () => {
-    this.context.setLoggedProf(null);
-    this.context.setProfileName('');
+  onSearch = (e) => {
 
-    this.props.history.push(`/accountHome`);
+    e.preventDefault();
+
+    if(this.state.searchText !== ''){
+      this.props.history.push(`/search/${this.state.searchText}`);
+    }
   }
 
   render() {
@@ -32,19 +34,17 @@ class NavBar extends Component {
           <Logo/>
         </NavLink>
 
-        <div>
+        <form onSubmit={this.onSearch}>
           <Input 
             type="text"
             placeholder="Buscar filmes" 
             value={this.state.searchText}
             onChange={e => this.setState({searchText: e.target.value})}
           />
-          <NavLink to={this.state.searchText === '' ? '#' : `/search/${this.state.searchText}`} 
-            className={styles.searchButton}
-          >
+          <button type="submit" className={styles.searchButton}>
             Buscar
-          </NavLink>
-        </div>
+          </button>
+        </form>
 
         <NavLink to={`/watchlist`} className={styles.navItem}>
           Watchlist
